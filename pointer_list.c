@@ -18,7 +18,7 @@ void FinalPList(PList *list){
 }
 
 
-/* ’†g‚ğ‚Ü‚Á‚³‚ç‚É‚·‚é */
+/* ä¸­èº«ã‚’ã¾ã£ã•ã‚‰ã«ã™ã‚‹ */
 void ClearPList(PList *list){
 	PListValue *lvalue, *next_value;
 	for(lvalue = list->first; lvalue != NULL; lvalue = next_value){ 
@@ -28,8 +28,8 @@ void ClearPList(PList *list){
 	list->now = list->last = list->first = NULL;
 }
 
-/* index‚Í0‚©‚çƒXƒ^[ƒg */
-/* index‚É’l‚ª‘¶İ‚µ‚È‚¢ê‡‚ÍNULL‚ğ•Ô‚· */
+/* indexã¯0ã‹ã‚‰ã‚¹ã‚¿ãƒ¼ãƒˆ */
+/* indexã«å€¤ãŒå­˜åœ¨ã—ãªã„å ´åˆã¯NULLã‚’è¿”ã™ */
 PListValue *GetPListValueIndex(PListValue *lvalue, const unsigned int index){
 	if(index == 0){ return lvalue; }
 	if(lvalue == NULL){ return NULL; }
@@ -45,7 +45,7 @@ void *GetValueIndexPList(PList *list, const unsigned int index){
 	return GetValueIndexPListValue(list->first,index);
 }
 
-/* ÅŒã‚É’Ç‰Á‚·‚é */
+/* æœ€å¾Œã«è¿½åŠ ã™ã‚‹ */
 void AddPList(PList *list, void *value){
 	PListValue *lvalue = (PListValue*)malloc(sizeof(PListValue));
 	if(!lvalue){ return; }
@@ -59,13 +59,13 @@ void AddPList(PList *list, void *value){
 	list->last = lvalue;
 }
 
-/* Å‰‚É’Ç‰Á‚·‚é */
+/* æœ€åˆã«è¿½åŠ ã™ã‚‹ */
 void UnshiftPList(PList *list, void *value){
 	PListValue *lvalue = (PListValue*)malloc(sizeof(PListValue));
 	if(!lvalue){ return; }
 	memset(lvalue, 0x00, sizeof(PListValue));
 	lvalue->value = value;
-	/* list->first‚ªNULL‚Å‚È‚¢ê‡A‚±‚ê‚Ì‘O‚É’Ç‰Á‚·‚é */
+	/* list->firstãŒNULLã§ãªã„å ´åˆã€ã“ã‚Œã®å‰ã«è¿½åŠ ã™ã‚‹ */
 	if(list->first){
 		list->first->prev = lvalue;
 	}
@@ -84,7 +84,7 @@ PList *CopyPList(PList *list){
 	return copy;
 }
 
-/* to‚ÌÅŒã‚Éfrom‚ğ’Ç‰Á‚·‚éB */
+/* toã®æœ€å¾Œã«fromã‚’è¿½åŠ ã™ã‚‹ã€‚ */
 void PlusPList(PList *to, PList *from){
 	void *value;
 	if(!to){ return; }
@@ -92,13 +92,13 @@ void PlusPList(PList *to, PList *from){
 	forlist(value, from){ AddPList(to, value); }
 }
 
-/* index‚Ì‰ÓŠ‚É’Ç‰Á‚·‚é
- * index‚ª’´‚¦‚Ä‚¢‚éê‡‚ÍÅŒã‚É’Ç‰Á */
+/* indexã®ç®‡æ‰€ã«è¿½åŠ ã™ã‚‹
+ * indexãŒè¶…ãˆã¦ã„ã‚‹å ´åˆã¯æœ€å¾Œã«è¿½åŠ  */
 void InsertPList(PList *list, void *value, const unsigned int index){
 	PListValue *lvalue, *new_lvalue;
 	if(index == 0){ UnshiftPList(list, value); return; } 
 	lvalue = GetPListValueIndex(list->first, index);
-	/* index‚ªÅŒã‚©’´‚¦‚Ä‚¢‚é‚Ì‚ÅÅŒã‚É’Ç‰Á */
+	/* indexãŒæœ€å¾Œã‹è¶…ãˆã¦ã„ã‚‹ã®ã§æœ€å¾Œã«è¿½åŠ  */
 	if(!lvalue){ AddPList(list, value); return; }
 	new_lvalue = (PListValue*)malloc(sizeof(PListValue));
 	if(!new_lvalue){ return; }
@@ -109,24 +109,24 @@ void InsertPList(PList *list, void *value, const unsigned int index){
 	lvalue->prev = new_lvalue;
 }
 
-/* index‚Ì‰ÓŠ‚Ìƒf[ƒ^‚ğíœ‚·‚é */
+/* indexã®ç®‡æ‰€ã®ãƒ‡ãƒ¼ã‚¿ã‚’å‰Šé™¤ã™ã‚‹ */
 void DeletePList(PList *list, const unsigned int index){
 	PListValue *lvalue = GetPListValueIndex(list->first, index);
 	if(lvalue == NULL){ return; }
 	
 	if(lvalue == list->last && lvalue == list->first){
-		/* 1Œ‚µ‚©“ü‚Á‚Ä‚¢‚È‚¢ */
+		/* 1ä»¶ã—ã‹å…¥ã£ã¦ã„ãªã„ */
 		list->last = list->first = NULL;
 	} else if(lvalue == list->last){
-		/* lvalue‚ªÅŒã */
+		/* lvalueãŒæœ€å¾Œ */
 		list->last = lvalue->prev;
 		lvalue->prev->next = NULL;
 	} else if(lvalue == list->first){
-		/* lvalue‚ªÅ‰ */
+		/* lvalueãŒæœ€åˆ */
 		list->first = lvalue->next;
 		lvalue->next->prev = NULL;
 	} else {
-		/* lvalue‚ª“r’† */
+		/* lvalueãŒé€”ä¸­ */
 		lvalue->prev->next = lvalue->next;
 		lvalue->next->prev = lvalue->prev;
 	}

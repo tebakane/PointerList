@@ -45,7 +45,7 @@ void AddKVList(KVList *list, char *key, void *value){
 	kv->value = value;
 }
 
-/* key‚ª‘¶İ‚µ‚È‚¢ê‡‚Í‚È‚É‚à‚µ‚È‚¢ */
+/* keyãŒå­˜åœ¨ã—ãªã„å ´åˆã¯ãªã«ã‚‚ã—ãªã„ */
 void DeleteKVKist(KVList *list, char *key){
 	KeyValue *kv;
 	int index = 0;

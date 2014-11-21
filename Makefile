@@ -1,5 +1,5 @@
 CC=gcc
-LIB=pointer_list.o key_value.o
+LIB=pointer_list.o key_value.o node_list.o
 SRC=sample/main.c
 all: libplist.a exec
 
@@ -8,7 +8,7 @@ libplist.a: $(LIB)
 	ranlib libplist.a
 
 exec:
-	$(CC) -I./ -o sample.out $(SRC) -lplist
+	$(CC) -I./ -o sample.out $(SRC) -L./ -lplist
 
 .c.o:
 	$(CC) -I./ -c -o $@ $<

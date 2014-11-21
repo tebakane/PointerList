@@ -1,7 +1,7 @@
 #ifndef _POINTER_LIST_H_
 #define _POINTER_LIST_H_
 /*
- * ƒŠƒXƒg—p‚ÌŠÖ”
+ * ãƒªã‚¹ãƒˆç”¨ã®é–¢æ•°
  */
 
 #ifdef __cplusplus
@@ -33,8 +33,8 @@ extern "C" {
 	void *GetValueIndexPList(PList *list, const unsigned int index);
 	int SizePList(PList *list);
 #define LengthPList(list) SizePList(list) 
-/* forlist“à‚Å“¯‚¶PList‚É‘Î‚µ‚Äforlist‚ðŽg—p‚·‚é‚Ænow‚ª•Ï‚í‚Á‚ÄˆÓ–¡•s–¾‚È“®‚«‚ð‚·‚é‚Ì‚Å
- * ‚»‚¤‚¢‚Á‚½ê‡‚Íforlistvalue‚ðŽg—p‚µ‚Ä value->value‚ÅƒAƒNƒZƒX‚·‚é‚±‚Æ */
+/* forlistå†…ã§åŒã˜PListã«å¯¾ã—ã¦forlistã‚’ä½¿ç”¨ã™ã‚‹ã¨nowãŒå¤‰ã‚ã£ã¦æ„å‘³ä¸æ˜Žãªå‹•ãã‚’ã™ã‚‹ã®ã§
+ * ãã†ã„ã£ãŸå ´åˆã¯forlistvalueã‚’ä½¿ç”¨ã—ã¦ value->valueã§ã‚¢ã‚¯ã‚»ã‚¹ã™ã‚‹ã“ã¨ */
 #define forlist(value, list) for(value = FirstValuePList(list); list->now != NULL; value = NextValuePList(list))
 #define forlistvalue(value, list) for(value = list->first; value != NULL; value = value->next)
 #ifdef __cplusplus
